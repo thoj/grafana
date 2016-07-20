@@ -362,6 +362,11 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
             max: panel.percentage && panel.stack ? 100 : panel.yaxes[0].max,
           };
 
+          if (panel.yaxes[0].minspan > 0) {
+            defaults.min = data[0].stats.current - panel.yaxes[0].minspan / 2;
+            defaults.max = data[0].stats.current + panel.yaxes[0].minspan / 2;
+          }
+
           options.yaxes.push(defaults);
 
           if (_.findWhere(data, {yaxis: 2})) {
@@ -373,6 +378,11 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
             secondY.min = panel.yaxes[1].min;
             secondY.max = panel.percentage && panel.stack ? 100 : panel.yaxes[1].max;
             options.yaxes.push(secondY);
+
+            if (panel.yaxes[1].minspan > 0) {
+              secondY.min = data[1].stats.current - panel.yaxes[1].minspan / 2;
+              secondY.max = data[1].stats.current + panel.yaxes[1].minspan / 2;
+            }
 
             applyLogScale(options.yaxes[1], data);
             configureAxisMode(options.yaxes[1], panel.percentage && panel.stack ? "percent" : panel.yaxes[1].format);

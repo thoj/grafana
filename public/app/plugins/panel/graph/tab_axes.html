@@ -31,6 +31,11 @@
 			</div>
 
 			<div class="gf-form">
+				<label class="gf-form-label width-5">Span</label>
+				<input type="number" class="gf-form-input max-width-5" placeholer="0" ng-model="yaxis.minspan" ng-change="ctrl.render()" ng-model-onblur>
+			</div>
+
+			<div class="gf-form">
 				<label class="gf-form-label width-5">Label</label>
 				<input type="text" class="gf-form-input max-width-20" ng-model="yaxis.label" ng-change="ctrl.render()" ng-model-onblur>
 			</div>
